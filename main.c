@@ -29,10 +29,10 @@ int main(void){
 	PORT_INIT();
 	INT_INIT();
 	
-	uint8_t ssd[10] = {0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F};	///< Array to hold values of segments corresponding to each digit.
+	uint8_t ssd[10] = {0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F};		///< Array to hold values of segments corresponding to each digit.
 	uint8_t value = 0;
 	
-	sei();									///< Enable global interrupts.
+	sei();							///< Enable global interrupts.
 	
 	while(1){
 		if(!(direction)){
@@ -60,7 +60,7 @@ int main(void){
 
 void PORT_INIT(void){
 	DISP_DDR = 0xFF;
-	DDRD &= ~(1<<PD2);						///< Set INT0 pin to input.
+	DDRD &= ~(1<<PD2);					///< Set INT0 pin to input.
 }
 
 /*!
@@ -68,6 +68,6 @@ void PORT_INIT(void){
  */
 
 void INT_INIT(void){
-	MCUCR |= (1<<ISC00)|(1<<ISC01);		///< A rising edge at INT0 generates an interrupt request.
-	GICR |= (1<<INT0);						///< Enable INT0 external interrupt request.
+	MCUCR |= (1<<ISC00)|(1<<ISC01);				///< A rising edge at INT0 generates an interrupt request.
+	GICR |= (1<<INT0);					///< Enable INT0 external interrupt request.
 }
